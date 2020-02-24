@@ -19,7 +19,6 @@ export class MessagingAreaComponent implements OnInit {
     this.chatService.loggedUserName.subscribe(userName => {
       this.loggedUserName = userName;
       var objDiv = document.getElementById("scroller");
-      console.log('EL FINAL ', objDiv.scrollHeight);
       objDiv.scrollTo(0, objDiv.scrollHeight);
     });
     this.chatService
@@ -28,7 +27,6 @@ export class MessagingAreaComponent implements OnInit {
         this.messages.push(message);
         setTimeout( () => { 
           var objDiv = document.getElementById("scroller");
-          console.log('EL FINAL 2', objDiv.scrollHeight);
           objDiv.scrollTo(0, objDiv.scrollHeight);
         }, 20 );
       });

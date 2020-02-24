@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
     next()
   })
 
-mongoose.connect('mongodb://database/chat_db', {useMongoClient: true})
+mongoose.connect('mongodb://localhost:27017/chat_db', {useMongoClient: true})
     .then(() => { console.log('Successful mongo connection.'); })
     .catch(err => console.log(err));
 
