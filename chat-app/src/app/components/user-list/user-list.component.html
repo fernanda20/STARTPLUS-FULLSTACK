@@ -1,0 +1,30 @@
+<div class="usersList">
+    <div class="myInfo">
+        <div class="pictureContainer">
+            <div class="picture">
+                <i class="material-icons person">
+                    person
+                </i>
+            </div>
+        </div>
+        <div class="contactName">
+            <div class="iconEdit">
+                <i class="material-icons iconPosEdit" *ngIf="!editLoggedUserName" (click)="editLoggedUserName = !editLoggedUserName">
+                    edit
+                </i>
+                <i class="material-icons iconPosSave" *ngIf="editLoggedUserName" (click)="closeEditUserName()">
+                    save
+                </i>
+            </div>
+            <div class="nameEdit">
+                <p *ngIf="!editLoggedUserName" class="contactNameP">
+                    {{loggedUserName}}
+                </p>
+                <input type="text" *ngIf="editLoggedUserName" [(ngModel)]="loggedUserName" />
+            </div>
+        </div>
+    </div>
+    <div class="connected">
+        <p class="connectedText">Usuarios conectados: {{ totalActiveUsers }}</p>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+import { PushNotification, Permission } from '../interfaces/push-notification.type';
+export declare class PushNotificationsService {
+    permission: Permission;
+    constructor();
+    isSupported(): boolean;
+    requestPermission(): void;
+    create(title: string, options?: PushNotification): any;
+}

@@ -1,0 +1,4 @@
+export * from './services/push-notifications.service';
+export * from './interfaces/push-notification.type';
+export declare class PushNotificationsModule {
+}

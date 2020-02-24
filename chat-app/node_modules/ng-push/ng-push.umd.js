@@ -1,0 +1,92 @@
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', 'rxjs'], factory) :
+	(factory((global['ng-push'] = {}),global.core,global.rxjs));
+}(this, (function (exports,core,rxjs) { 'use strict';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+var PushNotificationsService = /** @class */ (function () {
+    function PushNotificationsService() {
+        this.permission = this.isSupported() ? Notification.permission : 'denied';
+    }
+    /**
+     * @return {?}
+     */
+    PushNotificationsService.prototype.isSupported = /**
+     * @return {?}
+     */
+    function () {
+        return 'Notification' in window;
+    };
+    /**
+     * @return {?}
+     */
+    PushNotificationsService.prototype.requestPermission = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        if ('Notification' in window) {
+            Notification.requestPermission(function (status) { return _this.permission = status; });
+        }
+    };
+    /**
+     * @param {?} title
+     * @param {?=} options
+     * @return {?}
+     */
+    PushNotificationsService.prototype.create = /**
+     * @param {?} title
+     * @param {?=} options
+     * @return {?}
+     */
+    function (title, options) {
+        var _this = this;
+        return new rxjs.Observable(function (obs) {
+            if (!('Notification' in window)) {
+                obs.error('Notifications are not available in this environment');
+                obs.complete();
+            }
+            if (_this.permission !== 'granted') {
+                obs.error("The user hasn't granted you permission to send push notifications");
+                obs.complete();
+            }
+            var /** @type {?} */ n = new Notification(title, options);
+            n.onshow = function (e) { return obs.next({ notification: n, event: e }); };
+            n.onclick = function (e) { return obs.next({ notification: n, event: e }); };
+            n.onerror = function (e) { return obs.error({ notification: n, event: e }); };
+            n.onclose = function () { return obs.complete(); };
+        });
+    };
+    PushNotificationsService.decorators = [
+        { type: core.Injectable },
+    ];
+    /** @nocollapse */
+    PushNotificationsService.ctorParameters = function () { return []; };
+    return PushNotificationsService;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+var PushNotificationsModule = /** @class */ (function () {
+    function PushNotificationsModule() {
+    }
+    PushNotificationsModule.decorators = [
+        { type: core.NgModule, args: [{
+                    providers: [PushNotificationsService],
+                },] },
+    ];
+    return PushNotificationsModule;
+}());
+
+exports.PushNotificationsModule = PushNotificationsModule;
+exports.PushNotificationsService = PushNotificationsService;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));

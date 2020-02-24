@@ -1,0 +1,47 @@
+<div class="messagingArea">
+    <div class="contactInfo">
+        <p class="contactName">Chat Room</p>
+    </div>
+    <div class="messagesArea" id="scroller">
+        <div *ngFor="let message of messages; let i = index" 
+            [ngClass]=" message.sender === loggedUserName ? 'sentMessage' : 'receivedMessage'">
+            <div>
+                <p class="nameMessage" [ngClass]=" message.sender === loggedUserName ? 'sentP' : 'receivedP'">
+                    {{ message.sender }}
+                </p>
+            </div>
+            <div>
+                <p class="messageContent" [ngClass]=" message.sender === loggedUserName ? 'sentP' : 'receivedP'">
+                    {{ message.message }}
+                </p>
+            </div>
+            <div>
+                <p class="timeMessage" [ngClass]=" message.sender === loggedUserName ? 'sentP' : 'receivedP'">
+                    {{ message.sendTime }}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="inputTextArea">
+        <div class="emojiButton">
+            <i
+                (click)="toggled = !toggled"
+                [(emojiPickerIf)]="toggled"
+                [emojiPickerDirection]="'bottom' || 'top' || 'left' || 'right'"
+                (emojiPickerSelect)="selectedEmoji($event)">
+                <span class="material-icons emojiIcon">insert_emoticon</span>
+            </i>
+        </div>
+        <div class="textArea">
+            <form (ngSubmit)='sendMessage()'>
+                <input placeholder="Type a message. Hit Enter to send" type="text" name="message" [(ngModel)]="message">
+            </form>
+        </div>
+        <div class="sendButton">
+            <i
+                (click)="sendMessage()">
+                <span class="material-icons emojiIcon">send</span>
+            </i>
+        </div>
+    </div>
+</div>
