@@ -23,6 +23,7 @@ _Una vez hecho esto ejecutar el proyecto con el comando_
 ng serve
 ```
 
+_La aplicación se abrirá en localhost:4200_
 
 ### Pasos para ejecutar el proyecto de los servicios
 
